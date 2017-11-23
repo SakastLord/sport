@@ -11,5 +11,9 @@
         <typeAlias type="com.cyan.entity.Course" alias="Clz" />
         <typeAlias type="com.cyan.entity.StudyInfo" alias="StudyInfo" />
         <typeAlias type="com.cyan.entity.Admin" alias="Admin"/>
+        <typeAlias type="com.cyan.entity.SSTeam" alias="SSTeam"/>
+        <typeAlias type="com.cyan.entity.SSJudge" alias="SSJudge"/>
+        <typeAlias type="com.cyan.entity.SSAthlete" alias="SSAthlete"/>
+        <typeAlias type="com.cyan.entity.SSProject" alias="SSProject"/>
     </typeAliases>
 </configuration>
