@@ -189,6 +189,13 @@ public class AdminController {
         req.getSession().setAttribute("records", records);
         return "allChoose";
     }
+    /*这个是我们自己写的部分，以SS开头*/
+    @RequestMapping("/SSchooseManage")
+    public String SSchooseManage(HttpServletRequest req) {
+        List<StudyInfo> records = adminService.getAllStudyInfo();
+        req.getSession().setAttribute("records", records);
+        return "SSallChoose";
+    }
 
     @RequestMapping("/delStudyInfo")
     public String delStudyInfo(HttpServletRequest req, @RequestParam String id) {

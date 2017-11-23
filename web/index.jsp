@@ -36,7 +36,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">学生社团管理系统</a>
+            <a class="navbar-brand" href="#">学生体操报名管理系统</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
@@ -98,13 +98,13 @@
             }
         %>
         <div class="jumbotron" style="height: 350px; color: #f0efee;">
-            <h1>欢迎登陆学生社团管理系统!</h1>
+            <h1>欢迎登陆体操报名管理系统!</h1>
             <p>welcome to students' club manage system!</p>
         </div>
 
         <div class="container">
             <ol class="breadcrumb" style="margin-top: 10px">
-                <li class="active">热门课程</li>
+                <li class="active">信息公示</li>
             </ol>
             <!-- Example row of columns -->
             <div class="row">
