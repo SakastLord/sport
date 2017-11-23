@@ -1,19 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.cyan.entity.SSTeam">
-    <resultMap id="AdminMap" type="Admin">
+<mapper namespace="SSAdmin">
+    <resultMap id="SSAdminMap" type="SSAdmin">
         <id column="id" property="id" jdbcType="VARCHAR"/>
         <result column="pwd" property="pwd" jdbcType="VARCHAR"/>
     </resultMap>
-    <resultMap id="StudentMap" type="Student">
-        <id column="id" property="id" jdbcType="VARCHAR"/>
-        <result column="pwd" property="pwd" jdbcType="VARCHAR"/>
-        <result column="name" property="name" jdbcType="VARCHAR"/>
-        <result column="sex" property="sex" jdbcType="VARCHAR"/>
-        <result column="year" property="year" jdbcType="VARCHAR"/>
-        <result column="major" property="major" jdbcType="VARCHAR"/>
-    </resultMap>
-    <resultMap id="TeamMap" type="SSTeam">
+    <resultMap id="SSTeamMap" type="SSTeam">
         <id column="ID" property="id" jdbcType="VARCHAR"/>
         <result column="Leader_Name" property="leaderName" jdbcType="VARCHAR"/>
         <result column="Leader_Identity" property="leaderIdentity" jdbcType="VARCHAR"/>
@@ -25,66 +17,38 @@
         <result column="Coach_Sex" property="coachSex" jdbcType="VARCHAR"/>
         <result column="Coach_ID" property="coachId" jdbcType="VARCHAR"/>
         <result column="Team_Name" property="teamName" jdbcType="VARCHAR"/>
-        <result column="default_pswd" property="pwd" jdbcType="VARCHAR"/>
+        <result column="PWD" property="pwd" jdbcType="VARCHAR"/>
     </resultMap>
-    <resultMap id="ClzMap" type="Clz">
-        <id column="id" property="id" jdbcType="INTEGER"/>
-        <result column="name" property="name" jdbcType="VARCHAR"/>
-        <result column="time" property="time" jdbcType="VARCHAR"/>
-        <result column="credit" property="credit" jdbcType="INTEGER"/>
-        <result column="belong" property="belong" jdbcType="VARCHAR"/>
-        <result column="place" property="place" jdbcType="VARCHAR"/>
-        <result column="amount" property="amount" jdbcType="INTEGER" />
-        <result column="detail" property="detail" jdbcType="VARCHAR" />
-        <result column="selected" property="selected" jdbcType="INTEGER"/>
-    </resultMap>
-    <resultMap id="StudyMap" type="StudyInfo">
-        <id column="id" property="id" jdbcType="INTEGER"/>
-        <result column="s_id" property="s_id" jdbcType="VARCHAR"/>
-        <result column="s_name" property="s_name" jdbcType="VARCHAR"/>
-        <result column="s_major" property="s_major" jdbcType="VARCHAR"/>
-        <result column="c_id" property="c_id" jdbcType="INTEGER"/>
-        <result column="c_name" property="c_name" jdbcType="VARCHAR"/>
-        <result column="c_belong" property="c_belong" jdbcType="VARCHAR"/>
-        <result column="clb_manager" property="clb_manager" jdbcType="VARCHAR"/>
-        <result column="clb_tel" property="clb_tel" jdbcType="VARCHAR"/>
-        <result column="c_credit" property="c_credit" jdbcType="INTEGER"/>
-        <result column="c_time" property="c_time" jdbcType="VARCHAR"/>
-    </resultMap>
-    <select id="selectById" resultMap="AdminMap" parameterType="java.util.Map">
+
+    <select id="selectById" resultMap="SSAdminMap" parameterType="java.util.Map">
         SELECT * FROM admin WHERE id=#{id}
     </select>
 
-    <select id="selectAllTeams" resultMap="TeamMap" >
+    <select id="selectAllSSTeams" resultMap="SSTeamMap" parameterType="java.util.Map">
         SELECT * FROM team ORDER BY id
     </select>
 
-    <select id="selectAllCourses" resultMap="ClzMap" >
-        SELECT * FROM course
+
+
+    <select id="selectSSTeamById" resultMap="SSTeamMap" parameterType="java.util.Map" >
+        SELECT * FROM team WHERE id=${id};
     </select>
 
-    <select id="selectStuById" resultMap="StudentMap" parameterType="java.util.Map" >
-        SELECT * FROM student WHERE id=${id};
-    </select>
 
-    <select id="selectClzById" resultMap="ClzMap" parameterType="java.util.Map">
-        SELECT * FROM course WHERE id=${id};
-    </select>
-
-    <update id="updateStudent" parameterType="java.util.Map">
-        UPDATE student
+    <update id="updateSSTeam" parameterType="java.util.Map">
+        UPDATE team
         <set>
-            <if test="s.name != null" >
-                name = #{s.name,jdbcType=VARCHAR},
+            <if test="teamName != null" >
+                Team_Name = #{teamName,jdbcType=VARCHAR},
             </if>
-            <if test="s.pwd != null" >
-                pwd = #{s.pwd,jdbcType=VARCHAR},
+            <if test="leaderName!= null" >
+                Leader_Name = #{leaderName,jdbcType=VARCHAR},
             </if>
-            <if test="s.sex != null" >
-                sex = #{s.sex,jdbcType=INTEGER},
+            <if test="leaderIdentity != null" >
+                Leader_Identity = #{leaderIdentity,jdbcType=INTEGER},
             </if>
-            <if test="s.year != null" >
-                year = #{s.year,jdbcType=VARCHAR},
+            <if test="leaderPhone!= null" >
+                Leader_Phone = #{leaderPhone,jdbcType=VARCHAR},
             </if>
             <if test="s.major != null" >
                 major = #{s.major,jdbcType=VARCHAR},
