@@ -1,10 +1,7 @@
 package com.cyan.dao;
 
-import com.cyan.entity.Admin;
-import com.cyan.entity.SSProject;
-import com.cyan.entity.SSTeam;
-import com.cyan.entity.SSAthlete;
-import com.cyan.entity.SSJudge;
+import com.cyan.entity.*;
+
 import java.util.List;
 
 /**
@@ -15,7 +12,7 @@ import java.util.List;
  */
 public interface SSIAdminDao {
 
-    public Admin selectById(String id);
+    public SSAdmin selectById(String id);
     public List<SSTeam> selectAllSSTeams();
     public List<SSAthlete> selectAllSSAthletes();
     public List<SSProject> selectAllSSProjects();

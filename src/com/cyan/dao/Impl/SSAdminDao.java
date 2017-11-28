@@ -24,7 +24,7 @@ public class SSAdminDao extends SqlSessionDaoSupport implements SSIAdminDao {
  * admin
  **/
     @Override
-    public Admin selectById(String id) {
+    public SSAdmin selectById(String id) {
         Map<String, String> map = new HashMap<String, String>();
         map.put("id", id);
         return this.getSqlSession().selectOne(SQL_NAMESPACE + ".selectById", map);
