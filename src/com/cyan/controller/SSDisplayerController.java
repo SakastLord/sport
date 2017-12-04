@@ -5,6 +5,7 @@ import com.cyan.entity.SSAdmin;
 import com.cyan.entity.SSAthlete;
 import com.cyan.entity.SSProject;
 import com.cyan.service.SSIAdminService;
+import com.cyan.service.IAdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,11 +27,11 @@ import java.util.List;
 public class SSDisplayerController{
 
     @Autowired
-    private
-   /* @Autowired
-    private IClzService clzService;
-
+    private SSIAdminService ssAdminService;
     @Autowired
+    private IAdminService adminService;
+
+    /*@Autowired
     private IStudyService studyService;
 
     @Autowired

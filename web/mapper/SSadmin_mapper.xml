@@ -5,6 +5,7 @@
         <id column="id" property="id" jdbcType="VARCHAR"/>
         <result column="pwd" property="pwd" jdbcType="VARCHAR"/>
     </resultMap>
+    <!--实体类中的属性-->
     <resultMap id="SSTeamMap" type="SSTeam">
         <id column="ID" property="id" jdbcType="VARCHAR"/>
         <result column="Leader_Name" property="leaderName" jdbcType="VARCHAR"/>
@@ -35,7 +36,7 @@
     </select>
 
 
-    <update id="updateSSTeam" parameterType="java.util.Map">
+    <update id="updateSSTeam"  parameterType="java.util.Map">
         UPDATE team
         <set>
             <if test="teamName != null" >
@@ -50,8 +51,8 @@
             <if test="leaderPhone!= null" >
                 Leader_Phone = #{leaderPhone,jdbcType=VARCHAR},
             </if>
-            <if test="s.major != null" >
-                major = #{s.major,jdbcType=VARCHAR},
+            <if test="coachName!= null" >
+                Coach_Name = #{coachName,jdbcType=VARCHAR},
             </if>
         </set>
         WHERE id=#{s.id,jdbcType=VARCHAR}

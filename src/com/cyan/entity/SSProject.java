@@ -3,6 +3,16 @@ package com.cyan.entity;
 public class SSProject {
     private String id;
     private String name;
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
+    }
+
+    private String time;
     public String getId() {
         return id;
     }
