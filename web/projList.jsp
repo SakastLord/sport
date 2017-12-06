@@ -1,13 +1,13 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: 71402
+  Date: 2017/12/6
+  Time: 19:05
+  To change this template use File | Settings | File Templates.
+--%>
 <%@ page import="com.cyan.entity.Course" %>
 <%@ page import="java.util.List" %>
 <%@ page import="com.cyan.entity.SSProject" %>
-<%@ page import="com.cyan.entity.SSTeam" %><%--
-  Created by IntelliJ IDEA.
-  User: cyan
-  Date: 16/7/5
-  Time: 11:19
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -17,17 +17,18 @@
     <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
     <!-- Bootstrap core CSS -->
     <link href="static/bootstrap-3.3.5-dist/css/bootstrap.min.css" rel="stylesheet">
-    <title>用户登陆</title>
+
+    <title>所有项目</title>
 </head>
+<body>
 <%
-    String id = null;
-    String msg = null;
+    String name = null;
+    int num=1;
+    List<SSProject> projects = (List<SSProject>) session.getAttribute("proj");
     if (session != null) {
-        id = (String) session.getAttribute("user");
-        msg = (String) session.getAttribute("msg");
+        name = (String) session.getAttribute("user");
     }
 %>
-<body role="document">
 <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
         <div class="navbar-header">
@@ -42,17 +43,17 @@
         </div>
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="/index">主页</a></li>
-                <li><a href="/showAllClasses">所有课程</a></li>
+                <li><a href="/SSindex">主页</a></li>
+                <li class="active"><a href="/showAllProjects">所有项目</a></li>
                 <li><a href="/showMyClasses">我的课程</a></li>
                 <li><a href="/adminLogin.jsp">管理员登录</a></li>
             </ul>
             <%
-                if (id != null) {
+                if (name != null) {
             %>
 
             <ul class="nav navbar-nav navbar-right">
-                <li><a><%=id%> 欢迎您!
+                <li><a><%=name%> 欢迎您!
                 </a></li>
                 <li><a id="change" href="#" data-toggle="modal"
                        data-target="#myModal">修改密码</a></li>
@@ -63,10 +64,10 @@
             %>
             <form class="navbar-form navbar-right" action="/login" method="post">
                 <div class="form-group">
-                    <input type="text" placeholder="学号" class="form-control" name="id" required>
+                    <input type="text" placeholder="学号" class="form-control" name="id">
                 </div>
                 <div class="form-group">
-                    <input type="password" placeholder="密码" class="form-control" name="pwd" required>
+                    <input type="password" placeholder="密码" class="form-control" name="pwd">
                 </div>
                 <button type="submit" class="btn btn-success">登录</button>
             </form>
@@ -79,69 +80,42 @@
 </nav>
 
 <div class="container theme-showcase" role="main">
-    <%
-        if (msg != null) {
-            if (msg == "修改成功!") {
-    %>
-    <div class="alert alert-success" style="margin-top: 50px" role="alert">
-        <%
-        } else {
-        %>
-        <div class="alert alert-danger" style="margin-top: 50px" role="alert">
-            <%
-                }
-            %>
-            <strong><%=msg%>
-            </strong>
-        </div>
 
+    <ol class="breadcrumb" style="margin-top: 100px">
+        <li><a href="/index">首页</a></li>
+        <li class="active">所有课程</li>
+    </ol>
+
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>编号</th>
+            <th>课程名称</th>
+            <th>所属社团</th>
+            <th>学分</th>
+            <th>开课学期</th>
+            <th>课程容量</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <tbody>
         <%
-                session.setAttribute("msg", null);
+            for(Course c:courses){
+        %>
+        <tr>
+            <td><%=num++%></td>
+            <td><%=c.getName()%></td>
+            <td><%=c.getBelong()%></td>
+            <td><%=c.getCredit()%></td>
+            <td><%=c.getTime()%></td>
+            <td><%=c.getSelected()%> / <%=c.getAmount()%></td>
+            <td><a class="btn btn-primary" href="/showDetail?id=<%=c.getId()%>">详情</a></td>
+        </tr>
+        <%
             }
         %>
-        <div class="jumbotron" style="height: 350px; color: #f0efee;">
-            <h1>欢迎登陆体操报名管理系统!</h1>
-            <p>welcome to students' club manage system!</p>
-        </div>
-
-        <div class="container">
-            <ol class="breadcrumb" style="margin-top: 10px">
-                <li class="active">信息公示</li>
-            </ol>
-            <!-- Example row of columns -->
-            <div class="row">
-
-                <%
-                    int i=0;
-                  //  List<Course> clzs = (List<Course>) session.getAttribute("clzs");
-                     List<SSTeam> team = (List<SSTeam>)session.getAttribute("team");
-                    //if (!(clzs == null || clzs.isEmpty())) {
-                      if (!(team == null || team.isEmpty())) {
-                      //  for (Course clz : clzs) {
-                          for (SSTeam tam : team) {
-                            if(i==2) break;
-                            i++;
-                %>
-
-                <div class="col-md-4">
-                    <h2><!--%=clz.getName()%>-->
-                        <%=tam.getTeamName()%>
-                    </h2>
-                    <p><!--所属社团:%=clz.getBelong()%>-->
-                        开始时间:<%=tam.getLeaderName()%>
-                    </p>
-                    <p><!--%=clz.getDetail()%>-->
-                    </p>
-                    <p><a class="btn btn-default" href="/showDetail?id=<%=tam.getId()%>" role="button">View
-                        details &raquo;</a></p>
-                </div>
-                <%
-                        }
-                    }
-                %>
-            </div>
-        </div>
-    </div>
+        </tbody>
+    </table>
 
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog"
          aria-labelledby="myModalLabel" aria-hidden="true">
@@ -181,8 +155,10 @@
             </div><!-- /.modal-content -->
         </div><!-- /.modal -->
     </div>
+
 </div>
+</body>
 <script src="static/js/jquery-3.0.0.min.js"></script>
 <script type="text/javascript" src="static/bootstrap-3.3.5-dist/js/bootstrap.min.js"></script>
-</body>
+
 </html>

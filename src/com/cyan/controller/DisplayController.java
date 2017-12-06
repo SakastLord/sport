@@ -1,12 +1,11 @@
 package com.cyan.controller;
 
 import com.alibaba.fastjson.JSON;
-import com.cyan.entity.Course;
-import com.cyan.entity.Student;
-import com.cyan.entity.StudyInfo;
+import com.cyan.entity.*;
 import com.cyan.service.IAdminService;
 import com.cyan.service.IClzService;
 import com.cyan.service.IStudyService;
+import com.cyan.service.SSIAdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -35,22 +34,48 @@ public class DisplayController {
 
     @Autowired
     private IAdminService adminService;
+    @Autowired
+    private SSIAdminService ssAdminService;
 
-
-    @RequestMapping("/index")
+    /*@RequestMapping("/index")
     public String displayAll(HttpServletRequest req) {
 
         List<Course> clzs = clzService.getAllClz();
         req.getSession().setAttribute("clzs", clzs);
         return "index";
     }
+    */
 
+    @RequestMapping("/index")
+   public String displayAll(HttpServletRequest req) {
+
+        List<SSTeam> team = ssAdminService.getAllSSTeams();
+        req.getSession().setAttribute("team", team);
+       return "index";
+   }
+
+    @RequestMapping("/SSindex")
+    public String SSdisplayAll(HttpServletRequest req) {
+
+        List<SSProject> proj = ssAdminService.getAllSSProjects();
+        req.getSession().setAttribute("proj", proj);
+        return "SSindex";
+    }
+
+   /* @RequestMapping("/showSSDetail")
+    public String showSSDetail(@RequestParam String id, HttpServletRequest req) {
+        Course course = clzService.getClzById(Integer.parseInt(id));
+        req.getSession().setAttribute("course", course);
+        return "detail";
+    }
+    */
     @RequestMapping("/showDetail")
     public String showDetail(@RequestParam String id, HttpServletRequest req) {
         Course course = clzService.getClzById(Integer.parseInt(id));
         req.getSession().setAttribute("course", course);
         return "detail";
     }
+
 
     @RequestMapping("/showStudent")
     public String showStudents(HttpServletRequest req) {
@@ -69,6 +94,14 @@ public class DisplayController {
 
     }
 
+    //2017.12.6 18:57
+    @RequestMapping("/showAllProjects")
+    public String showAllProjects(HttpServletRequest req) {
+        List<SSProject> proj = ssAdminService.getAllSSProjects();
+        req.getSession().setAttribute("proj", proj);
+        return "projList";
+    }
+
     @RequestMapping("/showAllClasses")
     public String showAllClzs(HttpServletRequest req) {
         List<Course> courses = clzService.getAllClz();
@@ -76,6 +109,20 @@ public class DisplayController {
         return "clzList";
     }
 
+
+
+    /*@RequestMapping("/showMyTeams")
+    public String showMyTeams(HttpServletRequest req) {
+        String id = (String) req.getSession().getAttribute("userId");
+        List<StudyInfo> studyInfos=null;
+        if(id!=null){
+            studyInfos = studyService.getAllClzByStuId(id);
+        }
+        req.getSession().setAttribute("clzs", studyInfos);
+        return "myClzs";
+    }
+*/
+//problem: what the fucking of userId
     @RequestMapping("/showMyClasses")
     public String showMyClzs(HttpServletRequest req) {
         String id = (String) req.getSession().getAttribute("userId");

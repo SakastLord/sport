@@ -13,6 +13,16 @@ public class SSTeam {
     private String coachId;
     private String pwd;
 
+    public String getCoachSex() {
+        return coachSex;
+    }
+
+    public void setCoachSex(String coachSex) {
+        this.coachSex = coachSex;
+    }
+
+    private String coachSex;
+
     public String getCoachId() {
         return coachId;
     }

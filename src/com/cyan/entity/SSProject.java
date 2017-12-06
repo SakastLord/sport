@@ -3,6 +3,15 @@ package com.cyan.entity;
 public class SSProject {
     private String id;
     private String name;
+    private String rule;
+
+    public String getRule() {
+        return rule;
+    }
+
+    public void setRule(String rule) {
+        this.rule = rule;
+    }
 
     public String getTime() {
         return time;

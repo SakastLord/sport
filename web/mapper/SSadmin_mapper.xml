@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="SSAdmin">
     <resultMap id="SSAdminMap" type="SSAdmin">
-        <id column="id" property="id" jdbcType="VARCHAR"/>
+        <id column="ID" property="id" jdbcType="VARCHAR"/>
         <result column="pwd" property="pwd" jdbcType="VARCHAR"/>
     </resultMap>
     <!--实体类中的属性-->
@@ -21,6 +21,14 @@
         <result column="PWD" property="pwd" jdbcType="VARCHAR"/>
     </resultMap>
 
+
+    <resultMap id="SSProjectMap" type="SSProject">
+        <id column="ID" property="id" jdbcType="VARCHAR"/>
+        <result column="Name" property="name" jdbcType="VARCHAR"/>
+        <result column="Time" property="time" jdbcType="VARCHAR"/>
+        <result column="rule" property="rule" jdbcType="VARCHAR"/>
+    </resultMap>
+
     <select id="selectById" resultMap="SSAdminMap" parameterType="java.util.Map">
         SELECT * FROM admin WHERE id=#{id}
     </select>
@@ -32,7 +40,7 @@
 
 
     <select id="selectSSTeamById" resultMap="SSTeamMap" parameterType="java.util.Map" >
-        SELECT * FROM team WHERE id=${id};
+        SELECT * FROM team WHERE id=${id}
     </select>
 
 
@@ -51,6 +59,15 @@
             <if test="leaderPhone!= null" >
                 Leader_Phone = #{leaderPhone,jdbcType=VARCHAR},
             </if>
+            <if test="coachSex!= null" >
+                Coach_Sex = #{coachSex,jdbcType=VARCHAR},
+            </if>
+            <if test="coachId!= null" >
+                Coach_ID= #{coachId,jdbcType=VARCHAR},
+            </if>
+            <if test="teamName!= null" >
+                Team_Name = #{teamName,jdbcType=VARCHAR},
+            </if>
             <if test="coachName!= null" >
                 Coach_Name = #{coachName,jdbcType=VARCHAR},
             </if>
@@ -58,6 +75,11 @@
         WHERE id=#{s.id,jdbcType=VARCHAR}
     </update>
 
-
+    <select id="selectSSProjectById" resultMap="SSProjectMap" parameterType="java.util.Map" >
+        SELECT * FROM project WHERE ID=${ID}
+    </select>
+    <select id="selectAllSSProjects" resultMap="SSProjectMap" parameterType="java.util.Map">
+        SELECT * FROM project ORDER BY ID
+    </select>
 
 </mapper>

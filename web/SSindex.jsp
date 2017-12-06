@@ -1,13 +1,15 @@
-<%@ page import="com.cyan.entity.Course" %>
-<%@ page import="java.util.List" %>
-<%@ page import="com.cyan.entity.SSProject" %>
-<%@ page import="com.cyan.entity.SSTeam" %><%--
+<%--
   Created by IntelliJ IDEA.
-  User: cyan
-  Date: 16/7/5
-  Time: 11:19
+  User: 71402
+  Date: 2017/12/5
+  Time: 19:54
   To change this template use File | Settings | File Templates.
 --%>
+<!--  @ page import="com.cyan.entity.Course"    -->
+<%@ page import="com.cyan.entity.SSTeam" %>
+<%@ page import="com.cyan.entity.SSProject" %>
+<%@ page import="com.cyan.entity.Course" %>
+<%@ page import="java.util.List" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -42,10 +44,12 @@
         </div>
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="/index">主页</a></li>
+                <li class="active"><a href="/SSindex">主页</a></li>
                 <li><a href="/showAllClasses">所有课程</a></li>
                 <li><a href="/showMyClasses">我的课程</a></li>
+
                 <li><a href="/adminLogin.jsp">管理员登录</a></li>
+                <li><a href="/showAllProjects">所有项目</a></li>
             </ul>
             <%
                 if (id != null) {
@@ -100,7 +104,7 @@
             }
         %>
         <div class="jumbotron" style="height: 350px; color: #f0efee;">
-            <h1>欢迎登陆体操报名管理系统!</h1>
+            <h1>欢迎登陆体操报名管理系统SS页面!</h1>
             <p>welcome to students' club manage system!</p>
         </div>
 
@@ -113,26 +117,21 @@
 
                 <%
                     int i=0;
-                  //  List<Course> clzs = (List<Course>) session.getAttribute("clzs");
-                     List<SSTeam> team = (List<SSTeam>)session.getAttribute("team");
-                    //if (!(clzs == null || clzs.isEmpty())) {
-                      if (!(team == null || team.isEmpty())) {
-                      //  for (Course clz : clzs) {
-                          for (SSTeam tam : team) {
-                            if(i==2) break;
+                    List<SSProject> proj = (List<SSProject>) session.getAttribute("proj");
+                    if (!(proj == null || proj.isEmpty())) {
+                        for (SSProject pro : proj) {
+                            if(i==5) break;
                             i++;
                 %>
 
                 <div class="col-md-4">
-                    <h2><!--%=clz.getName()%>-->
-                        <%=tam.getTeamName()%>
+                    <h2><%=pro.getName()%>
                     </h2>
-                    <p><!--所属社团:%=clz.getBelong()%>-->
-                        开始时间:<%=tam.getLeaderName()%>
+                    <p>比赛时间:<%=pro.getTime()%>
                     </p>
-                    <p><!--%=clz.getDetail()%>-->
+                    <p><%=pro.getRule()%>
                     </p>
-                    <p><a class="btn btn-default" href="/showDetail?id=<%=tam.getId()%>" role="button">View
+                    <p><a class="btn btn-default" href="/showDetail?id=<%=pro.getId()%>" role="button">View
                         details &raquo;</a></p>
                 </div>
                 <%

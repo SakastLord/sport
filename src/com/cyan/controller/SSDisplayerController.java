@@ -31,6 +31,15 @@ public class SSDisplayerController{
     @Autowired
     private IAdminService adminService;
 
+
+
+    /*@RequestMapping("/SSindex")
+    public String displayAll(HttpServletRequest req) {
+
+        List<SSProject> proj = ssAdminService.getAllSSProjects();
+        req.getSession().setAttribute("proj", proj);
+        return "SSindex";
+    }*/
     /*@Autowired
     private IStudyService studyService;
 
