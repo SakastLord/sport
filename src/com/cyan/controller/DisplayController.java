@@ -94,13 +94,24 @@ public class DisplayController {
 
     }
 
-    //2017.12.6 18:57
+    //created on 2017.12.6 18:57
+    //it can work on 2017.12.7 14:25
     @RequestMapping("/showAllProjects")
     public String showAllProjects(HttpServletRequest req) {
         List<SSProject> proj = ssAdminService.getAllSSProjects();
         req.getSession().setAttribute("proj", proj);
         return "projList";
     }
+    //created on 2017.12.6 18:57
+    @RequestMapping("/teamSignup")
+    public String teamSignup(HttpServletRequest req) {
+        String teamId = (String) req.getSession().getAttribute("teamId");
+        if (req.getSession().getAttribute("teamId") == null) {
+            return "#"; //此处想表达的意思是如果发现没有登陆的话，应该提示没有登陆
+        }
+            //req.getSession().setAttribute("proj", proj);
+            return "teamSignup";//这里的界面应该是可以使用detail的界面或者是其他的界面来改，addcourse很合适
+        }
 
     @RequestMapping("/showAllClasses")
     public String showAllClzs(HttpServletRequest req) {
@@ -153,6 +164,7 @@ public class DisplayController {
         req.getSession().setAttribute("courses", courses);
         return "allCourses";
     }
+
 
     @RequestMapping("/adminIndex")
     public String showChart(HttpServletRequest req){
