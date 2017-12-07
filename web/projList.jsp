@@ -90,26 +90,26 @@
         <thead>
         <tr>
             <th>编号</th>
-            <th>课程名称</th>
-            <th>所属社团</th>
-            <th>学分</th>
-            <th>开课学期</th>
-            <th>课程容量</th>
+            <th>项目名称</th>
+            <th>项目介绍</th>
+            <th>#######</th>
+            <th>#######</th>
+            <th>#######</th>
             <th>操作</th>
         </tr>
         </thead>
         <tbody>
         <%
-            for(Course c:courses){
+            for(SSProject p:projects){
         %>
         <tr>
             <td><%=num++%></td>
-            <td><%=c.getName()%></td>
-            <td><%=c.getBelong()%></td>
-            <td><%=c.getCredit()%></td>
-            <td><%=c.getTime()%></td>
-            <td><%=c.getSelected()%> / <%=c.getAmount()%></td>
-            <td><a class="btn btn-primary" href="/showDetail?id=<%=c.getId()%>">详情</a></td>
+            <td><%=p.getId()%></td>
+            <td><%=p.getName()%></td>
+            <td><%=p.getTime()%></td>
+            <td><%=p.getRule()%></td>
+           <!--td %=c.getSelected()%> / %=c.getAmount()%></td>-->
+          <!--  <td><a class="btn btn-primary" href="/showDetail?id= %=c.getId()%>">详情</a></td>-->
         </tr>
         <%
             }
