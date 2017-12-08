@@ -46,7 +46,7 @@
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
                 <li><a href="/adminIndex">主页</a></li>
-                <li ><a href="/studentManage">学生管理</a></li>
+                <li ><a href="/studentManage">队伍管理</a></li>
                 <li class="active"><a href="/courseManage">课程管理</a></li>
                 <li><a href="/chooseManage">选课管理</a> </li>
                 <li><a href="/index">返回学生版主页</a></li>
