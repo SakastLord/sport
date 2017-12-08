@@ -45,11 +45,11 @@
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
                 <li class="active"><a href="/SSindex">主页</a></li>
-                <li><a href="/showAllClasses">所有课程</a></li>
+                <li><a href="/showAllProjects">所有项目</a></li>
                 <li><a href="/showMyClasses">我的课程</a></li>
 
                 <li><a href="/adminLogin.jsp">管理员登录</a></li>
-                <li><a href="/showAllProjects">所有项目</a></li>
+
             </ul>
             <%
                 if (id != null) {
