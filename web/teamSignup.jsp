@@ -49,7 +49,7 @@
                 <li ><a href="/studentManage">队伍管理</a></li>
                 <li class="active"><a href="/courseManage">课程管理</a></li>
                 <li><a href="/chooseManage">报名管理</a> </li>
-                <li><a href="/index">返回学生版主页</a></li>
+                <li><a href="/index">返回团队版主页</a></li>
             </ul>
         </div><!--/.nav-collapse -->
 
